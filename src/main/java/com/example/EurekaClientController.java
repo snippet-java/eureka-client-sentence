@@ -22,7 +22,7 @@ public class EurekaClientController {
 	  public @ResponseBody String getSentence() {
 	    return 
 	      getSubject("SUBJECT-TEST") + " "
-	      + sentenceService.getVerb() ;
+	      + sentenceService.getVerb();
 	  }
 
 	  public String getSubject(String service) {
@@ -38,7 +38,8 @@ public class EurekaClientController {
 	    return null;
 	  }
 	  
-
-	  //for hystrix purpose
+//	  public String getVerb(String service) {
+//		  
+//	  }
 	  
 }

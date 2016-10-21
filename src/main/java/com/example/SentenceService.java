@@ -1,31 +1,28 @@
 package com.example;
 
-import java.net.URI;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Service
-public class SentenceService {
+public class SentenceService implements SentenceServiceInterface{
 
 
-	@Autowired LoadBalancerClient lbclient;
+//	@Autowired LoadBalancerClient lbclient;
+	@Autowired VerbClient verbClient;
 	
 	@HystrixCommand(fallbackMethod="getFallbackVerb")
 	  public String getVerb() {
-		  System.out.println("cheok ome into getVerb method");
+		  System.out.println("cheok come into getVerb method");
 //	    List<ServiceInstance> list = client.getInstances(service);
-		ServiceInstance serviceInstance = lbclient.choose("VERB");
+//		ServiceInstance serviceInstance = lbclient.choose("VERB");
 //	    if (list != null && list.size() > 0 ) {
 //	      URI uri = list.get(0).getUri();
-		URI uri = serviceInstance.getUri();
-		System.out.println("cheok verb uri: " + uri.toString());
-	    return (new RestTemplate()).getForObject(uri,String.class);
+//		URI uri = serviceInstance.getUri();
+//		System.out.println("cheok verb uri: " + uri.toString());
+//	    return (new RestTemplate()).getForObject(uri,String.class);
+		return verbClient.getWord();
 	  }
 	  
 	  public String getFallbackVerb(){
