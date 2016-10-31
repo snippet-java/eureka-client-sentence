@@ -9,7 +9,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 public class SentenceServiceImpl implements SentenceService{
 
 
-	@Autowired VerbClient verbClient;
+	@Autowired VerbFeignClient verbClient;
 	
 	@HystrixCommand(fallbackMethod="getFallbackVerb")
 	  public String getVerb() {

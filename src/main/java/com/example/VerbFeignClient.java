@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient("VERB")
-public interface VerbClient {
+public interface VerbFeignClient {
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	String getWord();
