@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class EurekaClientController {
 	
-//	@Autowired DiscoveryClient client;
 	@Autowired LoadBalancerClient lbclient;
 	@Autowired SentenceService sentenceService;
 	
@@ -26,10 +25,7 @@ public class EurekaClientController {
 	  }
 
 	  public String getSubject(String service) {
-//	    List<ServiceInstance> list = client.getInstances(service);
 		ServiceInstance serviceInstance = lbclient.choose(service);
-//	    if (list != null && list.size() > 0 ) {
-//	      URI uri = list.get(0).getUri();
 		URI uri = serviceInstance.getUri();
 	  if (uri !=null ) {
 	    return (new RestTemplate()).getForObject(uri,String.class);
@@ -37,9 +33,5 @@ public class EurekaClientController {
 //	    }
 	    return null;
 	  }
-	  
-//	  public String getVerb(String service) {
-//		  
-//	  }
 	  
 }
